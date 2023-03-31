@@ -30,7 +30,6 @@
           <img
             src="../assets/sad-face.svg"
             alt="unavailable product"
-            srcset=""
           />
         </div>
         <div class="content">
@@ -67,46 +66,11 @@
               <div class="rating">
                 <span>{{ item.data.rating.rate }}/5</span>
                 <div class="rating">
-                  <span
-                    :class="
-                      item.data.category === 'men\'s clothing'
-                        ? 'bg-navy'
-                        : 'bg-magenta'
-                    "
-                    class="circle"
-                  ></span>
-                  <span
-                    :class="
-                      item.data.category === 'men\'s clothing'
-                        ? 'bg-navy'
-                        : 'bg-magenta'
-                    "
-                    class="circle"
-                  ></span>
-                  <span
-                    :class="
-                      item.data.category === 'men\'s clothing'
-                        ? 'bg-navy'
-                        : 'bg-magenta'
-                    "
-                    class="circle"
-                  ></span>
-                  <span
-                    :class="
-                      item.data.category === 'men\'s clothing'
-                        ? 'bg-navy'
-                        : 'bg-magenta'
-                    "
-                    class="circle"
-                  ></span>
-                  <span
-                    :class="
-                      item.data.category === 'men\'s clothing'
-                        ? 'bg-navy'
-                        : 'bg-magenta'
-                    "
-                    class="circle"
-                  ></span>
+                  <span :class="getRatingClass(1)" class="circle"></span>
+                  <span :class="getRatingClass(2)" class="circle"></span>
+                  <span :class="getRatingClass(3)" class="circle"></span>
+                  <span :class="getRatingClass(4)" class="circle"></span>
+                  <span :class="getRatingClass(5)" class="circle"></span>
                 </div>
               </div>
             </div>
@@ -196,6 +160,18 @@ export default {
       }
 
       this.isLoading = false;
+    },
+    getRatingClass(index) {
+      const rating = this.item.data.rating.rate;
+      if (rating < index) {
+        return this.item.data.category === "men's clothing"
+          ? "border-navy"
+          : "border-magenta";
+      } else {
+        return this.item.data.category === "men's clothing"
+          ? "bg-navy"
+          : "bg-magenta";
+      }
     },
   },
   mounted() {
